@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitor de alarmas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Monitor de alarmas</h1>
+    <div class="acciones">
+      <label class="btn" for="archivo">Importar CSV</label>
+      <input type="file" id="archivo" accept=".csv,text/csv" hidden>
+      <button id="btn-resumen" class="btn">Resumen del día</button>
+      <button id="btn-exportar" class="btn primario">Exportar a Excel</button>
+    </div>
+  </header>
+
+  <main>
+    <p id="mensaje" role="status" hidden></p>
+
+    <nav id="filtros" aria-label="Filtro por nivel">
+      <button data-nivel="todos" class="activo">Todos <span class="n">0</span></button>
+      <button data-nivel="warn">WARN <span class="n">0</span></button>
+      <button data-nivel="critico">CRÍTICO <span class="n">0</span></button>
+      <button data-nivel="normal">Normales <span class="n">0</span></button>
+      <span class="espacio"></span>
+      <button id="btn-refrescar" title="Recalcula las duraciones con la hora actual">Actualizar</button>
+    </nav>
+
+    <div class="tabla-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>2G</th><th>3G</th><th>4G</th><th>Fecha creación</th>
+            <th>Municipio</th><th>Departamento</th><th>Notif.</th><th>Duración</th><th>Nivel</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo"></tbody>
+      </table>
+      <p id="vacio" hidden>No hay alarmas para mostrar. Importa un CSV para comenzar.</p>
+    </div>
+    <p id="pie"></p>
+  </main>
+
+  <dialog id="modal-resumen">
+    <form method="dialog" class="modal-cab">
+      <h2>Resumen del día</h2>
+      <button aria-label="Cerrar">✕</button>
+    </form>
+    <div id="resumen-cuerpo"></div>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
